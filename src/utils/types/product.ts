@@ -19,6 +19,6 @@ export interface IProduct {
   vatRate?                : number;
   type                    : 'subscription' | 'one-time';
   unitsSoldByPricePoint?  : { price: number, units: number, orders: number, firstDate: Date, lastDate: Date }[];
-  stockStatus             : string[];
+  stockStatus             : string;
 }
 
