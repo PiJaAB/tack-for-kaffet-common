@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const ProductSchema = z.object({
+export const ProductSchema = z.object({
   title                     : z.string({ required_error: "Title is required", invalid_type_error: "Title must be a string" }).min(1, { message: "Must be at least 1 characters long" } ),
   stockStatus               : z.string().min(1),
   price                     : z.number().nonnegative(), // >= 0
@@ -48,6 +48,4 @@ const ProductSchema = z.object({
   // stockStatus: z.array(z.string()),
 
 })
-
-export default ProductSchema;
 
