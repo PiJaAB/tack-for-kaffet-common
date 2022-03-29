@@ -4,7 +4,7 @@ import AddressSchema from './address';
 const CustomerSchema = z.object({
   firstName: z.string(),
   lastName: z.string(),
-  ssn: z.string(),
+  ssn: z.number(),
   phoneNumber: z.string(),
   email: z.string(),
   emailSubscription: z.boolean(),
