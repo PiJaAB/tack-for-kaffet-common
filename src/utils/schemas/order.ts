@@ -1,18 +1,7 @@
 import { z } from 'zod';
-import { Product } from '../types';
 import ProductSchema from './product';
 
-export interface IOrder {
-  id: string;
-  createdAt?: number | string | Date;
-  updatedAt?: number | string | Date;
-  shoppingCartId: string;
-  productRowIds: Array<number | string>;
-  customerId?: string | undefined;
-  cancelled?: boolean;
-  products?: Product[];
-}
-export const OrderSchema = z.object({
+const OrderSchema = z.object({
   customerId: z.string(),
   cancelled: z.boolean(),
   products: z.array(ProductSchema),
@@ -34,3 +23,5 @@ export const OrderSchema = z.object({
     })
     .min(1, { message: 'Must be at least 1 characters long' }),
 });
+
+export default OrderSchema;

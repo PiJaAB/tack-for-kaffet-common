@@ -1,2 +1,2 @@
 export { default as ProductSchema } from './product';
-export * from './order';
+export { default } from './order';
