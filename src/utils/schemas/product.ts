@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 const ProductSchema = z.object({
+  id: z.string().optional(),
   title: z
     .string({
       required_error: 'Title is required',
