@@ -4,6 +4,7 @@ import CustomerSchema from './customer';
 import TransactionSchema from './transaction';
 
 const OrderSchema = z.object({
+  id: z.string().optional(),
   cancelled: z.boolean(),
   products: z.array(ProductSchema),
   productRowIds: z.array(z.union([z.string(), z.number()])).optional(),
