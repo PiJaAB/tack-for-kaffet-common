@@ -9,6 +9,7 @@ const CustomerSchema = z.object({
   email: z.string(),
   emailSubscription: z.boolean(),
   address: AddressSchema,
+  billingAddress: AddressSchema,
 });
 
 export default CustomerSchema;
