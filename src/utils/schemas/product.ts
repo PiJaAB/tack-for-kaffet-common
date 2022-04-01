@@ -16,6 +16,7 @@ const ProductSchema = z.object({
   fileUpload: z.string().optional(),
   shortDescription: z.string().optional(), // string | undefined
   imageUrl: z.string().optional(),
+  category: z.string().optional(),
 
   productAllowReviews: z.literal('on').nullable(),
   productReviewNotification: z.literal('on').nullable(),
