@@ -15,6 +15,7 @@ const ProductSchema = z.object({
   subscriptionTime: z.string().nullable(), // string | null
   fileUpload: z.string().optional(),
   shortDescription: z.string().optional(), // string | undefined
+  imageUrl: z.string().optional(),
 
   productAllowReviews: z.literal('on').nullable(),
   productReviewNotification: z.literal('on').nullable(),
