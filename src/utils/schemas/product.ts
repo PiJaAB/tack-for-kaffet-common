@@ -24,6 +24,8 @@ const ProductSchema = z.object({
   productNoPushNotifications: z.literal('on').nullable(), // 'on' | null
   productCustomerMessage: z.string().nullish(), // string | null | undefined
 
+  quantity: z.number().optional(),
+
   // createdAt: z.preprocess((arg) => {
   //   if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
   //   return arg;
