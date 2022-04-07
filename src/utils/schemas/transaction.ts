@@ -7,7 +7,7 @@ const TransactionSchema = z.object({
   accountNumber: z.string(),
   accountName: z.string(),
   transactionType: z.string(),
-  orderRef: z.string(),
+  orderRef: z.string(), // z.instanceof(DocumentReference)
 });
 
 export default TransactionSchema;
