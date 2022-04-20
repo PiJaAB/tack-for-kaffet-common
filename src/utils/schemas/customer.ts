@@ -9,6 +9,9 @@ const CustomerSchema = z.object({
   phoneNumber: z.string(),
   email: z.string().optional(),
   emailSubscription: z.string().optional(),
+  about: z.string().optional(),
+  website: z.string().optional(),
+  imageUrl: z.string().optional(),
   address: AddressSchema.optional(),
   billingAddress: AddressSchema.optional(),
 });
