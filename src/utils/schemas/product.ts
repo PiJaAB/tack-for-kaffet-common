@@ -18,10 +18,10 @@ const ProductSchema = z.object({
   imageUrl: z.string().optional(),
   category: z.string().optional(),
 
-  productAllowReviews: z.literal('on').nullable(),
-  productReviewNotification: z.literal('on').nullable(),
-  productNotificationOnPurchase: z.literal('on').nullable(),
-  productNoPushNotifications: z.literal('on').nullable(), // 'on' | null
+  productAllowReviews: z.boolean().nullable(),
+  productReviewNotification: z.boolean().nullable(),
+  productNotificationOnPurchase: z.boolean().nullable(),
+  productNoPushNotifications: z.boolean().nullable(), // boolean | null
   productCustomerMessage: z.string().nullish(), // string | null | undefined
 
   quantity: z.number().optional(),
