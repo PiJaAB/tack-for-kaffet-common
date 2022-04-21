@@ -8,7 +8,7 @@ const CustomerSchema = z.object({
   ssn: z.string().optional(),
   phoneNumber: z.string(),
   email: z.string().optional(),
-  emailSubscription: z.string().optional(),
+  emailSubscription: z.boolean().optional(),
   about: z.string().optional(),
   website: z.string().optional(),
   imageUrl: z.string().optional(),
