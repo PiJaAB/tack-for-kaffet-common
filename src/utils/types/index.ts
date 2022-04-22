@@ -6,3 +6,4 @@ export * from './customer';
 export * from './transaction';
 export * from './order';
 export * from './orderNote';
+export * from './orderStatus';
