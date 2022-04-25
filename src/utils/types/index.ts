@@ -3,6 +3,7 @@ export * from './category';
 export * from './question';
 export * from './product';
 export * from './customer';
+export * from './customerAudit';
 export * from './transaction';
 export * from './order';
 export * from './orderNote';

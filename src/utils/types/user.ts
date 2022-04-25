@@ -1,3 +1,9 @@
+import { z } from 'zod';
+
+import UserSchema from '../schemas/user';
+
+export type User = z.infer<typeof UserSchema>;
+
 export interface PublicUser {
   username?: string;
   role?: string;

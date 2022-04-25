@@ -14,6 +14,8 @@ const CustomerSchema = z.object({
   imageUrl: z.string().optional(),
   address: AddressSchema.optional(),
   billingAddress: AddressSchema.optional(),
+
+  legacyId: z.string().optional(),
 });
 
 export default CustomerSchema;
