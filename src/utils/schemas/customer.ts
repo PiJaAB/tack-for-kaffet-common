@@ -3,10 +3,10 @@ import AddressSchema from './address';
 
 const CustomerSchema = z.object({
   id: z.string().optional(),
-  firstName: z.string(),
-  lastName: z.string(),
+  firstName: z.string().optional(),
+  lastName: z.string().optional(),
   ssn: z.string().optional(),
-  phoneNumber: z.string(),
+  phoneNumber: z.string().optional(),
   email: z.string().optional(),
   emailSubscription: z.boolean().optional(),
   about: z.string().optional(),
@@ -16,6 +16,7 @@ const CustomerSchema = z.object({
   billingAddress: AddressSchema.optional(),
 
   legacyId: z.string().optional(),
+  updatedBy: z.string().optional(),
 });
 
 export default CustomerSchema;
