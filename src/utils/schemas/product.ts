@@ -26,17 +26,6 @@ const ProductSchema = z.object({
 
   quantity: z.number().optional(),
 
-
-
-
-
-
-
-
-
-
-
-
   // createdAt: z.preprocess((arg) => {
   //   if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
   //   return arg;

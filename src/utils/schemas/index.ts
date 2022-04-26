@@ -7,4 +7,3 @@ export { default as CustomerAuditSchema } from './customerAudit';
 export { default as OrderNoteSchema } from './orderNote';
 export { default as OrderStatusSchema } from './orderStatus';
 export { default as UserSchema } from './user';
-

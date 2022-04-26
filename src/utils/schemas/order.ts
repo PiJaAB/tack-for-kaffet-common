@@ -17,26 +17,18 @@ const OrderSchema = z.object({
   transactions: z.array(TransactionSchema).optional(),
 
   orderStatus: StatusSchema,
-  paymentStatus: StatusSchema.optional(),   // optional being temporary(!)
+  paymentStatus: StatusSchema.optional(), // optional being temporary(!)
 
-  orderNotes: z.array(z.object({
-    id: z.string(),
-    orderId: z.string(),
-    content: z.string(),
-    username: z.string(),
-  })).optional(),
-
-
-
-
-
-
-
-
-
-
-
-
+  orderNotes: z
+    .array(
+      z.object({
+        id: z.string(),
+        orderId: z.string(),
+        content: z.string(),
+        username: z.string(),
+      }),
+    )
+    .optional(),
 
   // shoppingCartId: z
   //   .string({
