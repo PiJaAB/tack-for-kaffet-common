@@ -1,9 +1,8 @@
 import { z } from 'zod';
-import {OrderSchema} from '.';
+import OrderSchema from './order';
 
 import AuditTypeEnum from '../enums/audit';
 
-import { Order } from '../types/order';
 import UserSchema from './user';
 
 const OrderAuditSchema = z.object({
@@ -19,4 +18,3 @@ const OrderAuditSchema = z.object({
 });
 
 export default OrderAuditSchema;
-
