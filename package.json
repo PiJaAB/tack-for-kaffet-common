@@ -1,6 +1,6 @@
 {
   "name": "tack-for-kaffet-common",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "private": true,
   "main": "dist/index.js",
   "license": "UNLICENSED",

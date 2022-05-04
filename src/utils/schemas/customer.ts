@@ -12,6 +12,7 @@ const CustomerSchema = z.object({
   about: z.string().optional(),
   website: z.string().optional(),
   imageUrl: z.string().optional(),
+  profileImageHash: z.string().optional(),
   address: AddressSchema.optional(),
   billingAddress: AddressSchema.optional(),
 

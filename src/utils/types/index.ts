@@ -9,3 +9,4 @@ export * from './transaction';
 export * from './order';
 export * from './orderNote';
 export * from './orderStatus';
+export * from './orderAudit';

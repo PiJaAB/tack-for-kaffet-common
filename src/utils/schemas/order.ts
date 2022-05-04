@@ -6,8 +6,8 @@ import StatusSchema from './orderStatus';
 
 const OrderSchema = z.object({
   id: z.string().optional(),
-  cancelled: z.boolean(),
-  products: z.array(ProductSchema),
+  cancelled: z.boolean().optional(),
+  products: z.array(ProductSchema).optional(),
   productRowIds: z.array(z.union([z.string(), z.number()])).optional(),
 
   customerId: z.string().optional(),
@@ -16,7 +16,7 @@ const OrderSchema = z.object({
 
   transactions: z.array(TransactionSchema).optional(),
 
-  orderStatus: StatusSchema,
+  orderStatus: StatusSchema.optional(),
   paymentStatus: StatusSchema.optional(), // optional being temporary(!)
 
   orderNotes: z
