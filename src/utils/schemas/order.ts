@@ -16,7 +16,7 @@ const OrderSchema = z.object({
 
   transactions: z.array(TransactionSchema).optional(),
 
-  paymentOrderID: z.string(),
+  paymentOrderID: z.string().optional(),
   orderStatus: StatusSchema.optional(),
   paymentStatus: StatusSchema.optional(), // optional being temporary(!)
 
