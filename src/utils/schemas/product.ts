@@ -26,6 +26,10 @@ const ProductSchema = z.object({
   productCustomerMessage: z.string().nullish(), // string | null | undefined
 
   quantity: z.number().optional(),
+  trialPeriod: z.object({
+    hasTrial: z.boolean(),
+    period: z.number(),
+  }).nullish(),
 
   // createdAt: z.preprocess((arg) => {
   //   if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);

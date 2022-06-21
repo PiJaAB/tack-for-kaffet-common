@@ -1,24 +1,18 @@
 import { z } from 'zod';
 import ProductSchema from './product';
 import CustomerSchema from './customer';
-import TransactionSchema from './transaction';
 import StatusSchema from './orderStatus';
+import PaymentOrderOperationEntity from './paymentOrderOperationEntity';
 
 const OrderSchema = z.object({
   id: z.string().optional(),
-  cancelled: z.boolean().optional(),
-  products: z.array(ProductSchema).optional(),
-  productRowIds: z.array(z.union([z.string(), z.number()])).optional(),
-
-  customerId: z.string().optional(),
-  customerRef: z.string().optional(),
+  products: z.array(ProductSchema),
   customer: CustomerSchema.optional(),
-
-  transactions: z.array(TransactionSchema).optional(),
+  checkoutURL: PaymentOrderOperationEntity.optional(),
 
   paymentOrderID: z.string().optional(),
   orderStatus: StatusSchema.optional(),
-  paymentStatus: StatusSchema.optional(), // optional being temporary(!)
+  paymentStatus: StatusSchema.optional(), // optional being temporary(!?)
 
   orderNotes: z
     .array(

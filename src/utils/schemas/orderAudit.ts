@@ -6,11 +6,10 @@ import AuditTypeEnum from '../enums/audit';
 import UserSchema from './user';
 
 const OrderAuditSchema = z.object({
-  id: z.string().optional(),
   user: UserSchema.nullish(),
-  before: OrderSchema.optional(),
-  after: OrderSchema.optional(),
-  orderId: z.string().optional(),
+  before: OrderSchema.optional().nullish(),
+  after: OrderSchema.optional().nullish(),
+  orderID: z.string().optional(),
   createdAt: z.date().optional(),
   updatedAt: z.date().optional(),
   documentPath: z.string().optional(),
