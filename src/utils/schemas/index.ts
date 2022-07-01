@@ -10,3 +10,4 @@ export { default as OrderAuditSchema } from './orderAudit';
 export { default as OrderStatusSchema } from './orderStatus';
 export { default as OrderRequestSchema } from './orderRequestSchema';
 export { default as UserSchema } from './user';
+export { default as SubscriptionProduct } from './subscriptionProduct';

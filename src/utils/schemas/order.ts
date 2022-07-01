@@ -2,13 +2,11 @@ import { z } from 'zod';
 import ProductSchema from './product';
 import CustomerSchema from './customer';
 import StatusSchema from './orderStatus';
-import PaymentOrderOperationEntity from './paymentOrderOperationEntity';
 
 const OrderSchema = z.object({
   id: z.string().optional(),
   products: z.array(ProductSchema),
   customer: CustomerSchema.optional(),
-  checkoutURL: PaymentOrderOperationEntity.optional(),
 
   paymentOrderID: z.string().optional(),
   orderStatus: StatusSchema.optional(),
