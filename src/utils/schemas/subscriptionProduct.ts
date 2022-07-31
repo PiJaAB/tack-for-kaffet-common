@@ -14,6 +14,7 @@ const SubscriptionProduct = z.object({
     expiryDate: z.string(),
   }),
   updatedAt: z.date(),
+  failedAttempts: z.number(),
 });
 
 export default SubscriptionProduct;
