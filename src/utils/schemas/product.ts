@@ -49,15 +49,15 @@ const ProductSchema = z.object({
     })
     .nullish(),
 
-  // createdAt: z.preprocess((arg) => {
-  //   if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
-  //   return arg;
-  // }, z.date()),
+  createdAt: z.preprocess((arg) => {
+    if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
+    return arg;
+  }, z.date()),
 
-  // updatedAt: z.preprocess((arg) => {
-  //   if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
-  //   return arg;
-  // }, z.date()),
+  updatedAt: z.preprocess((arg) => {
+    if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
+    return arg;
+  }, z.date()),
 
   // currency: z.string(),
   // sold: z.number(),
