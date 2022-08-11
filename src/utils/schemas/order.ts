@@ -30,15 +30,15 @@ const OrderSchema = z.object({
   //   })
   //   .min(1, { message: 'Must be at least 1 characters long' }),
 
-  // createdAt: z.preprocess((arg) => {
-  //   if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
-  //   return arg;
-  // }, z.date()),
+  createdAt: z.preprocess((arg) => {
+    if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
+    return arg;
+  }, z.date()),
 
-  // updatedAt: z.preprocess((arg) => {
-  //   if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
-  //   return arg;
-  // }, z.date()),
+  updatedAt: z.preprocess((arg) => {
+    if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
+    return arg;
+  }, z.date()),
 });
 
 export default OrderSchema;
