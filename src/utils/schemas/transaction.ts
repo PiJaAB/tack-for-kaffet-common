@@ -1,12 +1,15 @@
 import { z } from 'zod';
+import PaymentOrderOperationEntity from './paymentOrderOperationEntity';
+import TransactionStatusSchema from './transactionStatusSchema';
 
 const TransactionSchema = z.object({
-  id: z.string(),
   customerID: z.string(),
   date: z.date().optional(),
   paymentOrderID: z.string(),
   orderID: z.string(),
-  transactionType: z.string(),
+  paymentMethod: z.string(),
+  paymentOrderStatus: TransactionStatusSchema,
+  checkoutURL: PaymentOrderOperationEntity.optional(),
 });
 
 export default TransactionSchema;

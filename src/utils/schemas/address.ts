@@ -5,7 +5,9 @@ const AddressSchema = z.object({
   zipCode: z.string(),
   city: z.string(),
   country: z.string(),
-  countryCode: z.string().optional(),
+  countryCode: z
+    .union([z.literal('SE'), z.literal('NO'), z.literal('FI')])
+    .optional(),
 });
 
 export default AddressSchema;

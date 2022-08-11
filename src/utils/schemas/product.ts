@@ -12,8 +12,24 @@ const ProductSchema = z.object({
   stockStatus: z.string().min(1),
   price: z.number().nonnegative(), // >= 0
   type: z.union([z.literal('subscription'), z.literal('one-time')]),
-  subscriptionReoccurring: z.string().nullable(), // string | null
-  subscriptionTime: z.string().nullable(), // string | null
+  subscriptionReoccurring: z
+    .union([
+      z.literal('every'),
+      z.literal('second'),
+      z.literal('third'),
+      z.literal('fourth'),
+      z.literal('fifth'),
+      z.literal('sixth'),
+    ])
+    .nullable(),
+  subscriptionTime: z
+    .union([
+      z.literal('day'),
+      z.literal('week'),
+      z.literal('month'),
+      z.literal('year'),
+    ])
+    .nullable(),
   fileUpload: z.string().optional(),
   shortDescription: z.string().optional(), // string | undefined
   imageUrl: z.string().optional(),
@@ -26,6 +42,12 @@ const ProductSchema = z.object({
   productCustomerMessage: z.string().nullish(), // string | null | undefined
 
   quantity: z.number().optional(),
+  trialPeriod: z
+    .object({
+      hasTrial: z.boolean(),
+      period: z.number(),
+    })
+    .nullish(),
 
   // createdAt: z.preprocess((arg) => {
   //   if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
