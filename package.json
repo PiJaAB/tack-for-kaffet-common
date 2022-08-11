@@ -1,6 +1,6 @@
 {
   "name": "tack-for-kaffet-common",
-  "version": "1.0.3",
+  "version": "1.0.33",
   "private": true,
   "main": "dist/index.js",
   "license": "UNLICENSED",
@@ -43,6 +43,5 @@
     "react": "^17.0.2",
     "rimraf": "^3.0.2",
     "typescript": "4.5.5"
-  },
-  "peerDependencies": {}
+  }
 }

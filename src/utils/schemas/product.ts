@@ -1,30 +1,63 @@
 import { z } from 'zod';
 
 const ProductSchema = z.object({
-  title                     : z.string({ required_error: "Title is required", invalid_type_error: "Title must be a string" }).min(1, { message: "Must be at least 1 characters long" } ),
-  stockStatus               : z.string().min(1),
-  price                     : z.number().nonnegative(), // >= 0
-  type                      : z.union([z.literal('subscription'), z.literal('one-time')]),
-  subscriptionReoccurring   : z.string().nullable(),          // string | null
-  subscriptionTime          : z.string().nullable(),          // string | null
-  fileUpload                : z.string().optional(),
-  shortDescription          : z.string().optional(),          // string | undefined
+  id: z.string().optional(),
+  activeSubscription: z.boolean().nullish(),
+  title: z
+    .string({
+      required_error: 'Title is required',
+      invalid_type_error: 'Title must be a string',
+    })
+    .min(1, { message: 'Must be at least 1 characters long' }),
+  stockStatus: z.string().min(1),
+  price: z.number().nonnegative(), // >= 0
+  type: z.union([z.literal('subscription'), z.literal('one-time')]),
+  subscriptionReoccurring: z
+    .union([
+      z.literal('every'),
+      z.literal('second'),
+      z.literal('third'),
+      z.literal('fourth'),
+      z.literal('fifth'),
+      z.literal('sixth'),
+    ])
+    .nullable(),
+  subscriptionTime: z
+    .union([
+      z.literal('day'),
+      z.literal('week'),
+      z.literal('month'),
+      z.literal('year'),
+    ])
+    .nullable(),
+  fileUpload: z.string().optional(),
+  shortDescription: z.string().optional(), // string | undefined
+  imageUrl: z.string().optional(),
+  category: z.string().optional(),
 
-  productAllowReviews             : z.literal('on').nullable(),
-  productReviewNotification       : z.literal('on').nullable(),
-  productNotificationOnPurchase   : z.literal('on').nullable(),
-  productNoPushNotifications      : z.literal('on').nullable(),   // 'on' | null
-  productCustomerMessage          : z.string().nullish(),     // string | null | undefined
+  productAllowReviews: z.boolean().nullable(),
+  productReviewNotification: z.boolean().nullable(),
+  productNotificationOnPurchase: z.boolean().nullable(),
+  productNoPushNotifications: z.boolean().nullable(), // boolean | null
+  productCustomerMessage: z.string().nullish(), // string | null | undefined
 
-  createdAt: z.preprocess((arg) => {
-             if (typeof arg == "string" || arg instanceof Date) return new Date(arg);
-             return arg;
-           }, z.date()),
+  quantity: z.number().optional(),
+  trialPeriod: z
+    .object({
+      hasTrial: z.boolean(),
+      period: z.number(),
+    })
+    .nullish(),
 
-  updatedAt: z.preprocess((arg) => {
-             if (typeof arg == "string" || arg instanceof Date) return new Date(arg);
-             return arg;
-           }, z.date()),
+  // createdAt: z.preprocess((arg) => {
+  //   if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
+  //   return arg;
+  // }, z.date()),
+
+  // updatedAt: z.preprocess((arg) => {
+  //   if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
+  //   return arg;
+  // }, z.date()),
 
   // currency: z.string(),
   // sold: z.number(),
@@ -46,8 +79,6 @@ const ProductSchema = z.object({
   //   lastDate: z.date(),
   // })),
   // stockStatus: z.array(z.string()),
-
-})
+});
 
 export default ProductSchema;
-
