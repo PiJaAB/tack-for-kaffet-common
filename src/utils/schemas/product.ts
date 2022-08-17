@@ -59,6 +59,13 @@ const ProductSchema = z.object({
     return arg;
   }, z.date()),
 
+  overrides: z
+    .object({
+      endDate: z.date().optional(),
+      price: z.number().optional(),
+    })
+    .nullable(),
+
   // currency: z.string(),
   // sold: z.number(),
   // balance: z.number(),

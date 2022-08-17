@@ -1,18 +1,25 @@
 import { z } from 'zod';
 
 const SubscriptionProduct = z.object({
-  continuouslySince: z.date().optional(),
+  continuouslySince: z.date().nullable(),
   createdAt: z.date().optional(),
   endDate: z.date().optional(),
   firstStart: z.date().optional(),
-  orderRefs: z.array(z.string()),
+  trialEndDate: z.date().optional(),
+  orderRefs: z.array(
+    z.object({
+      data: z.date(),
+      orderDocRef: z.string(),
+    }),
+  ),
   paymentOrderID: z.string().optional(),
-  recurrenceToken: z.object({
-    type: z.string(),
-    token: z.string(),
-    name: z.string(),
-    expiryDate: z.string(),
-  }),
+  recurrenceTokenRef: z.string(),
+  // recurrenceToken: z.object({
+  //   type: z.string(),
+  //   token: z.string(),
+  //   name: z.string(),
+  //   expiryDate: z.string(),
+  // }),
   updatedAt: z.date(),
   failedAttempts: z.number(),
 });
