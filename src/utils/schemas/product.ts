@@ -64,7 +64,6 @@ const ProductSchema = z.object({
     })
     .nullish(),
 
-  // TODO: replace with `overrides`
   trialPeriod: z
     .object({
       hasTrial: z.boolean(),
