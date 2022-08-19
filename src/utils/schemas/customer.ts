@@ -17,6 +17,8 @@ const CustomerSchema = z.object({
   address: AddressSchema.optional(),
   billingAddress: AddressSchema.optional(),
 
+  // - flag that customer is already a subscriber but is allowed to pay early (beforehand).
+  subscriberAndCanPayInAdvance: z.boolean().optional(),
   updatedBy: z.string().optional(),
 });
 
