@@ -14,12 +14,6 @@ const SubscriptionProduct = z.object({
   ),
   paymentOrderID: z.string().optional(),
   recurrenceTokenRef: z.string(),
-  // recurrenceToken: z.object({
-  //   type: z.string(),
-  //   token: z.string(),
-  //   name: z.string(),
-  //   expiryDate: z.string(),
-  // }),
   updatedAt: z.date(),
   failedAttempts: z.number(),
 });

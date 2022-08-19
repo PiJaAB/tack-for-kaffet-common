@@ -11,3 +11,4 @@ export { default as OrderStatusSchema } from './orderStatus';
 export { default as OrderRequestSchema } from './orderRequestSchema';
 export { default as UserSchema } from './user';
 export { default as SubscriptionProductSchema } from './subscriptionProduct';
+export { default as RecurrenceTokenSchema } from './recurrenceToken';

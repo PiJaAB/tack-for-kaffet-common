@@ -42,6 +42,29 @@ const ProductSchema = z.object({
   productCustomerMessage: z.string().nullish(), // string | null | undefined
 
   quantity: z.number().optional(),
+
+  specialOffer: z
+    .object({
+      type: z
+        .union([z.literal('trial'), z.literal('firstSubscriberDiscount')])
+        .nullish(),
+    })
+    .nullish(),
+  trialEndDate: z
+    .preprocess((arg) => {
+      if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
+      return arg;
+    }, z.date())
+    .nullish(),
+
+  overrides: z
+    .object({
+      trialEndDate: z.date().optional(),
+      price: z.number().optional(),
+    })
+    .nullish(),
+
+  // TODO: replace with `overrides`
   trialPeriod: z
     .object({
       hasTrial: z.boolean(),
@@ -58,13 +81,6 @@ const ProductSchema = z.object({
     if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
     return arg;
   }, z.date()),
-
-  overrides: z
-    .object({
-      endDate: z.date().optional(),
-      price: z.number().optional(),
-    })
-    .nullable(),
 
   // currency: z.string(),
   // sold: z.number(),
