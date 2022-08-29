@@ -20,8 +20,8 @@
       "src"
     ]
   },
-  "dependencies": {
-    "zod": "3.13.4"
+  "peerDependencies": {
+    "zod": "^3.13.4"
   },
   "devDependencies": {
     "@types/child-process-promise": "^2.2.1",
@@ -42,6 +42,7 @@
     "prettier": "2.3.2",
     "react": "^17.0.2",
     "rimraf": "^3.0.2",
-    "typescript": "4.5.5"
+    "typescript": "4.5.5",
+    "zod": "^3.13.4"
   }
 }
