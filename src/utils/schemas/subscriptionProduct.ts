@@ -12,7 +12,6 @@ const SubscriptionProduct = z.object({
       orderDocRef: z.string(),
     }),
   ),
-  paymentOrderID: z.string().optional(),
   recurrenceTokenRef: z.string(),
   updatedAt: z.date(),
   failedAttempts: z.number(),
