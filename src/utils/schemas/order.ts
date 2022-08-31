@@ -11,17 +11,6 @@ const OrderSchema = z.object({
   orderStatus: StatusSchema.optional(),
   paymentStatus: StatusSchema.optional(), // optional being temporary(!?)
 
-  orderNotes: z
-    .array(
-      z.object({
-        id: z.string(),
-        orderId: z.string(),
-        content: z.string(),
-        username: z.string(),
-      }),
-    )
-    .optional(),
-
   createdAt: z.preprocess((arg) => {
     if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
     return arg;
