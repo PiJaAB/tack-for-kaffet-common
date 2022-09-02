@@ -42,6 +42,28 @@ const ProductSchema = z.object({
   productCustomerMessage: z.string().nullish(), // string | null | undefined
 
   quantity: z.number().optional(),
+
+  specialOffer: z
+    .object({
+      type: z
+        .union([z.literal('trial'), z.literal('firstSubscriberDiscount')])
+        .nullish(),
+    })
+    .nullish(),
+  trialEndDate: z
+    .preprocess((arg) => {
+      if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
+      return arg;
+    }, z.date())
+    .nullish(),
+
+  overrides: z
+    .object({
+      trialEndDate: z.date().optional(),
+      price: z.number().optional(),
+    })
+    .nullish(),
+
   trialPeriod: z
     .object({
       hasTrial: z.boolean(),
@@ -58,27 +80,6 @@ const ProductSchema = z.object({
     if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
     return arg;
   }, z.date()),
-
-  // currency: z.string(),
-  // sold: z.number(),
-  // balance: z.number(),
-  // category: z.string(),
-  // tags: z.array(z.string()), // === z.string().array()
-  // description: z.string().optional(),
-  // imageUrl: z.string().optional(),
-  // location: z.string(),
-  // lastOrdered: z.date(), // accepts a date, not a string date
-  // createdAt: z.date(),
-  // updatedAt: z.date(),
-  // vatRate: z.number(),
-  // unitsSoldByPricePoint: z.array(z.object({
-  //   price: z.number(),
-  //   units: z.number(),
-  //   orders: z.number(),
-  //   firstDate: z.date(),
-  //   lastDate: z.date(),
-  // })),
-  // stockStatus: z.array(z.string()),
 });
 
 export default ProductSchema;

@@ -11,3 +11,4 @@ export * from './orderNote';
 export * from './orderStatus';
 export * from './orderAudit';
 export * from './subscriptionProduct';
+export * from './recurrenceToken';

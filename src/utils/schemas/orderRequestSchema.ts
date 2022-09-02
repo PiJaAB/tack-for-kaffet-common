@@ -6,11 +6,12 @@ const OrderRequestSchema = z.object({
   billingAddress: AddressSchema,
   paymentMethod: z.string(),
 
-  productRows: z.array(z.object({
-    productID: z.string(),
-    quantity: z.number().int(),
-  })),
+  productRows: z.array(
+    z.object({
+      productID: z.string(),
+      quantity: z.number().int(),
+    }),
+  ),
 });
 
 export default OrderRequestSchema;
-

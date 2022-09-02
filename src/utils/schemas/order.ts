@@ -8,7 +8,6 @@ const OrderSchema = z.object({
   products: z.array(ProductSchema),
   customer: CustomerSchema.optional(),
 
-  paymentOrderID: z.string().optional(),
   orderStatus: StatusSchema.optional(),
   paymentStatus: StatusSchema.optional(), // optional being temporary(!?)
 
@@ -22,13 +21,6 @@ const OrderSchema = z.object({
       }),
     )
     .optional(),
-
-  // shoppingCartId: z
-  //   .string({
-  //     required_error: 'ShoppingCartId is required',
-  //     invalid_type_error: 'shoppingCartId must be a string',
-  //   })
-  //   .min(1, { message: 'Must be at least 1 characters long' }),
 
   createdAt: z.preprocess((arg) => {
     if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
