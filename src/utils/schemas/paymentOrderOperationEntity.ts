@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const PaymentOrderOperationEntity = z.object({
-  method: z.union([z.literal('GET'), z.literal('PATHC'), z.literal('POST')]),
+  method: z.union([z.literal('GET'), z.literal('PATCH'), z.literal('POST')]),
   href: z.string(),
   rel: z.union([
     z.literal('update-order'),
