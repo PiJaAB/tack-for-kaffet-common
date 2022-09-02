@@ -7,6 +7,7 @@ const PaymentOrderOperationEntity = z.object({
     z.literal('update-order'),
     z.literal('abort'),
     z.literal('cancel'),
+    z.literal('capture'),
     z.literal('reversal'),
     z.literal('redirect-checkout'),
     z.literal('view-checkout'),
