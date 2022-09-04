@@ -12,7 +12,7 @@ const SubscriptionProduct = z.object({
       orderDocRef: z.string(),
     }),
   ),
-  recurrenceTokenRef: z.string(),
+  savedPaymentMethodRef: z.string(),
   failedAttempts: z.number(),
   status: z.union([
     z.literal('cancelled'),

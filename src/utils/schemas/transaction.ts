@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import PaymentOrderOperationEntity from './paymentOrderOperationEntity';
+import { SWEDBANK_PAY_PAYMENT_METHOD } from '../constants';
 import TransactionStatusSchema from './transactionStatusSchema';
 
 const TransactionSchema = z.object({
@@ -9,7 +9,11 @@ const TransactionSchema = z.object({
   orderID: z.string(),
   paymentMethod: z.string(),
   paymentOrderStatus: TransactionStatusSchema,
-  checkoutURL: PaymentOrderOperationEntity.optional(),
+});
+
+export const TransactionSwedbankPayCCSchema = TransactionSchema.extend({
+  paymentOrderID: z.string(),
+  paymentMethod: z.literal(SWEDBANK_PAY_PAYMENT_METHOD.CC),
 });
 
 export default TransactionSchema;
