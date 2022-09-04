@@ -1,5 +1,11 @@
 import { z } from 'zod';
 
-import TransactionSchema from '../schemas/transaction';
+import TransactionSchema, {
+  TransactionSwedbankPayCCSchema,
+} from '../schemas/transaction';
+
+export type TransactionSwedbankPayCC = z.infer<
+  typeof TransactionSwedbankPayCCSchema
+>;
 
 export type Transaction = z.infer<typeof TransactionSchema>;

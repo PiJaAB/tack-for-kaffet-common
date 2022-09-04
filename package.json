@@ -6,7 +6,9 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "rimraf dist && tsc && copyfiles -u 1 \"src/**/*.{d.ts,json}\" dist",
-    "dev": "sh -c 'tsc --watch & nodemon -x \"copyfiles -u 1 \\\"src/**/*.{d.ts,json}\\\" dist\"; wait'",
+    "dev:tsc": "tsc --watch",
+    "dev:json": "nodemon -x \"copyfiles -u 1 \\\"src/**/*.{d.ts,json}\\\" dist\"",
+    "dev": "run-p -cs dev:*",
     "lint": "NODE_ENV=production run-p -cls --aggregate-output lint:*",
     "lint:eslint-check": "NODE_ENV=production eslint-config-prettier 'src/**/*.js'",
     "lint:prettier": "NODE_ENV=production prettier -c 'src/**/*.{js,jsx,ts,tsx,json}'",
