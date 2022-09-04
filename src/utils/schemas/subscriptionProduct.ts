@@ -13,8 +13,13 @@ const SubscriptionProduct = z.object({
     }),
   ),
   recurrenceTokenRef: z.string(),
-  updatedAt: z.date(),
   failedAttempts: z.number(),
+  status: z.union([
+    z.literal('cancelled'),
+    z.literal('pending-cancel'),
+    z.literal('active'),
+  ]),
+  updatedAt: z.date(),
 });
 
 export default SubscriptionProduct;
