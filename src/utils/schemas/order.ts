@@ -8,8 +8,8 @@ const OrderSchema = z.object({
   products: z.array(ProductSchema),
   customer: CustomerSchema.optional(),
 
-  orderStatus: StatusSchema.optional(),
-  paymentStatus: StatusSchema.optional(), // optional being temporary(!?)
+  orderStatus: StatusSchema,
+  orderPaidBy: z.string().optional(),
 
   orderNotes: z
     .array(

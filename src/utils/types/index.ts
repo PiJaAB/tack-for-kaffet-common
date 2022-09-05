@@ -12,3 +12,4 @@ export * from './orderStatus';
 export * from './orderAudit';
 export * from './subscriptionProduct';
 export * from './savedPaymentMethod';
+export * from './actionDefinition';

@@ -14,3 +14,5 @@ export { default as UserSchema } from './user';
 export { default as SubscriptionProductSchema } from './subscriptionProduct';
 export { default as SavedPaymentMethodSchema } from './savedPaymentMethod';
 export * from './savedPaymentMethod';
+export { default as ActionDefinitionSchema } from './actionDefinition';
+export * from './actionDefinition';
