@@ -12,7 +12,15 @@ const SubscriptionProduct = z.object({
       orderDocRef: z.string(),
     }),
   ),
-  savedPaymentMethodRef: z.string(),
+  savedPaymentMethod: z
+    .union([
+      z.object({
+        docRef: z.string(),
+        date: z.date(),
+      }),
+      z.null(),
+    ])
+    .optional(),
   failedAttempts: z.number(),
   status: z.union([
     z.literal('cancelled'),
