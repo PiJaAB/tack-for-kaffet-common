@@ -5,7 +5,11 @@ import AuditTypeEnum from '../enums/audit';
 import CustomerSchema from './customer';
 import OrderSchema from './order';
 import OrderNoteSchema from './orderNote';
-import ProductSchema from './product';
+import {
+  BaseProductSchema,
+  ProductSchema,
+  OrderProductSchema,
+} from './product';
 import TransactionSchema from './transaction';
 
 import UserSchema from './user';
@@ -14,7 +18,9 @@ const Paylod = z.union([
   CustomerSchema,
   OrderSchema,
   OrderNoteSchema,
+  BaseProductSchema,
   ProductSchema,
+  OrderProductSchema,
   TransactionSchema,
 ]);
 

@@ -1,11 +1,11 @@
 import { z } from 'zod';
-import ProductSchema from './product';
+import { OrderProductSchema } from './product';
 import CustomerSchema from './customer';
 import StatusSchema from './orderStatus';
 
 const OrderSchema = z.object({
   id: z.string().optional(),
-  products: z.array(ProductSchema),
+  products: z.array(OrderProductSchema),
   customer: CustomerSchema.optional(),
 
   orderStatus: StatusSchema,
