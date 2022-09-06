@@ -43,28 +43,31 @@ export const BaseProductSchema = z.object({
   quantity: z.number().optional(),
 
   specialOffer: z
-    .object({
-      type: z
-        .union([z.literal('trial'), z.literal('firstSubscriberDiscount')])
-        .nullish(),
-    })
-    .nullish(),
-
-  trialPeriod: z
-    .object({
-      value: z.number(),
-      unit: z.union([
-        z.literal('day'),
-        z.literal('week'),
-        z.literal('month'),
-        z.literal('year'),
-      ]),
-    })
-    .nullish(),
+    .union([
+      z.object({
+        type: z.literal('trial'),
+        trialPeriod: z
+          .object({
+            value: z.number(),
+            unit: z.union([
+              z.literal('day'),
+              z.literal('week'),
+              z.literal('month'),
+              z.literal('year'),
+            ]),
+          })
+          .nullish(),
+      }),
+      z.object({
+        type: z.literal('firstSubscriberDiscount'),
+      }),
+    ])
+    .nullish()
+    .optional(),
 });
 
 export const ProductSchema = BaseProductSchema.extend({
-  overrides: BaseProductSchema.partial(),
+  overrides: BaseProductSchema.partial().optional().nullable(),
   createdAt: z.preprocess((arg) => {
     if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
     return arg;
@@ -76,5 +79,7 @@ export const ProductSchema = BaseProductSchema.extend({
 });
 
 export const OrderProductSchema = BaseProductSchema.extend({
+  id: z.string(),
   isTrial: z.boolean().optional(),
+  quantity: z.number().optional(),
 });

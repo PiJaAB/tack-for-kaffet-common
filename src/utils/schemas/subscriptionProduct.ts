@@ -14,17 +14,15 @@ const SubscriptionProduct = z.object({
   firstStart: z.date().optional(),
   trialEndDate: z.date().optional(),
   orderRefs: z.array(z.string()),
-  nextRenewalAttempt: z.union([z.date(), z.null()]),
+  nextRenewalAttempt: z.date().nullable(),
   renewalAttempts: z.number(),
   savedPaymentMethod: z
-    .union([
-      z.object({
-        docRef: z.string(),
-        date: z.date(),
-      }),
-      z.null(),
-    ])
-    .optional(),
+    .object({
+      docRef: z.string(),
+      date: z.date(),
+    })
+    .optional()
+    .nullable(),
   failedAttempts: z.number(),
   updatedAt: z.date(),
 });
