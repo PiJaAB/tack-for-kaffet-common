@@ -1,5 +1,5 @@
 export { default as AuditSchema } from './audit';
-export { default as ProductSchema } from './product';
+export * from './product';
 export { default as OrderSchema } from './order';
 export { default as TransactionSchema } from './transaction';
 export * from './transaction';

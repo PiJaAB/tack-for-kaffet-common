@@ -1,8 +1,7 @@
 import { z } from 'zod';
 
-const ProductSchema = z.object({
+export const BaseProductSchema = z.object({
   id: z.string().optional(),
-  activeSubscription: z.boolean().nullish(),
   title: z
     .string({
       required_error: 'Title is required',
@@ -50,36 +49,32 @@ const ProductSchema = z.object({
         .nullish(),
     })
     .nullish(),
-  trialEndDate: z
-    .preprocess((arg) => {
-      if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
-      return arg;
-    }, z.date())
-    .nullish(),
-
-  overrides: z
-    .object({
-      trialEndDate: z.date().optional(),
-      price: z.number().optional(),
-    })
-    .nullish(),
 
   trialPeriod: z
     .object({
-      hasTrial: z.boolean(),
-      period: z.number(),
+      value: z.number(),
+      unit: z.union([
+        z.literal('day'),
+        z.literal('week'),
+        z.literal('month'),
+        z.literal('year'),
+      ]),
     })
     .nullish(),
+});
 
+export const ProductSchema = BaseProductSchema.extend({
+  overrides: BaseProductSchema.partial(),
   createdAt: z.preprocess((arg) => {
     if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
     return arg;
   }, z.date()),
-
   updatedAt: z.preprocess((arg) => {
     if (typeof arg === 'string' || arg instanceof Date) return new Date(arg);
     return arg;
   }, z.date()),
 });
 
-export default ProductSchema;
+export const OrderProductSchema = BaseProductSchema.extend({
+  isTrial: z.boolean().optional(),
+});

@@ -1,17 +1,21 @@
 import { z } from 'zod';
 
 const SubscriptionProduct = z.object({
+  status: z.union([
+    z.literal('Active'),
+    z.literal('Cancelled'),
+    z.literal('On-Hold'),
+    z.literal('Expired'),
+    z.literal('Pending-Cancel'),
+  ]),
   continuouslySince: z.date().nullable(),
   createdAt: z.date().optional(),
   endDate: z.date().optional(),
   firstStart: z.date().optional(),
   trialEndDate: z.date().optional(),
-  orderRefs: z.array(
-    z.object({
-      data: z.date(),
-      orderDocRef: z.string(),
-    }),
-  ),
+  orderRefs: z.array(z.string()),
+  nextRenewalAttempt: z.union([z.date(), z.null()]),
+  renewalAttempts: z.number(),
   savedPaymentMethod: z
     .union([
       z.object({
@@ -22,11 +26,6 @@ const SubscriptionProduct = z.object({
     ])
     .optional(),
   failedAttempts: z.number(),
-  status: z.union([
-    z.literal('cancelled'),
-    z.literal('pending-cancel'),
-    z.literal('active'),
-  ]),
   updatedAt: z.date(),
 });
 
