@@ -16,3 +16,4 @@ export { default as SavedPaymentMethodSchema } from './savedPaymentMethod';
 export * from './savedPaymentMethod';
 export { default as ActionDefinitionSchema } from './actionDefinition';
 export * from './actionDefinition';
+export { default as AddressSchema } from './address';
