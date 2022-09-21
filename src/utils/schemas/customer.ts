@@ -20,6 +20,26 @@ const CustomerSchema = z.object({
   // - flag that customer is already a subscriber but is allowed to pay early (beforehand).
   subscriberAndCanPayInAdvance: z.boolean().optional(),
   updatedBy: z.string().optional(),
+
+  /**
+   * Duplicated data from other parts of the database.
+   * This is to make it easier to query for customers.
+   * This data is not guaranteed to be up to date,
+   * and should not be used for anything critical.
+   */
+  convenientListData_uncertain: z
+    .object({
+      subscriptions: z
+        .record(
+          z
+            .object({
+              status: z.string(),
+            })
+            .optional(),
+        )
+        .optional(),
+    })
+    .optional(),
 });
 
 export default CustomerSchema;
