@@ -3,10 +3,10 @@ import OrderSchema from './order';
 
 import AuditTypeEnum from '../enums/audit';
 
-import UserSchema from './user';
+import { PublicUserSchema } from './user';
 
 const OrderAuditSchema = z.object({
-  user: UserSchema.nullish(),
+  user: PublicUserSchema.nullish(),
   before: OrderSchema.optional().nullish(),
   after: OrderSchema.optional().nullish(),
   orderID: z.string().optional(),
