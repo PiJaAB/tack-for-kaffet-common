@@ -12,7 +12,7 @@ import {
 } from './product';
 import TransactionSchema from './transaction';
 
-import UserSchema from './user';
+import { PublicUserSchema } from './user';
 
 const Paylod = z.union([
   CustomerSchema,
@@ -26,7 +26,7 @@ const Paylod = z.union([
 
 const AuditSchema = z.object({
   id: z.string(),
-  user: UserSchema.nullish(),
+  user: PublicUserSchema.nullish(),
   before: Paylod,
   after: Paylod,
   customerId: z.string().optional(),

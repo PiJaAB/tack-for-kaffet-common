@@ -3,11 +3,11 @@ import { z } from 'zod';
 import AuditTypeEnum from '../enums/audit';
 
 import CustomerSchema from './customer';
-import UserSchema from './user';
+import { PublicUserSchema } from './user';
 
 const CustomerAuditSchema = z.object({
   id: z.string(),
-  user: UserSchema.nullish(),
+  user: PublicUserSchema.nullish(),
   before: CustomerSchema,
   after: CustomerSchema,
   customerId: z.string(),
