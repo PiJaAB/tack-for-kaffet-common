@@ -1,13 +1,15 @@
 import { z } from 'zod';
 
+export const subscriptionStatuses = [
+  'Active',
+  'Cancelled',
+  'On-Hold',
+  'Expired',
+  'Pending-Cancel',
+] as const;
+
 const SubscriptionProduct = z.object({
-  status: z.union([
-    z.literal('Active'),
-    z.literal('Cancelled'),
-    z.literal('On-Hold'),
-    z.literal('Expired'),
-    z.literal('Pending-Cancel'),
-  ]),
+  status: z.enum(subscriptionStatuses),
   continuouslySince: z.date().nullable(),
   createdAt: z.date().optional(),
   endDate: z.date().optional(),
