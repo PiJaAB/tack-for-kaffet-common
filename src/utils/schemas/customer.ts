@@ -20,6 +20,7 @@ const CustomerSchema = z.object({
   // - flag that customer is already a subscriber but is allowed to pay early (beforehand).
   subscriberAndCanPayInAdvance: z.boolean().optional(),
   updatedBy: z.string().optional(),
+  createdAt: z.date().nullish(),
 
   /**
    * Duplicated data from other parts of the database.
