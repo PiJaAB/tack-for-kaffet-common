@@ -27,6 +27,7 @@ export const SubscriptionReoccuringTimeSchema = z.enum([
 // subscriptionTime: SubscriptionReoccuringTimeSchema,
 
 const IProductSchema = z.object({
+  type: z.string(),
   title: z
     .string({
       required_error: 'Title is required',
@@ -34,6 +35,7 @@ const IProductSchema = z.object({
     })
     .min(1, { message: 'Must be at least 1 characters long' }),
   stockStatus: z.string().min(1),
+  enabledPaymentMethods: z.array(z.string()).optional(),
   price: z.number().nonnegative(), // 0 <= x
   taxRate: z.number().gte(0).lte(1), // 0 <= x <= 1
   fileUpload: z.string().optional(),
