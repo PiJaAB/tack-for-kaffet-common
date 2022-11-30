@@ -15,7 +15,7 @@ const TransactionSchema = z.object({
   actions: z.array(ActionDefinitionSchema).optional(),
 });
 
-export const TransactionSwedbankSchema = TransactionSchema.extend({
+export const TransactionSwedbankPaySchema = TransactionSchema.extend({
   paymentOrderID: z.string(),
   paymentOrderStatus: TransactionStatusSchema,
   paymentMethod: z.union([
