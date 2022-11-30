@@ -6,7 +6,9 @@ import StatusSchema from './orderStatus';
 const OrderSchema = z.object({
   id: z.string().optional(),
   products: z.array(OrderProductSchema),
-  customer: CustomerSchema.optional(),
+  customer: CustomerSchema.extend({
+    id: z.string(),
+  }).optional(),
 
   orderStatus: StatusSchema,
   orderPaidBy: z.string().optional(),
