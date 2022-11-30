@@ -20,7 +20,7 @@ export const TransactionSwedbankPaySchema = TransactionSchema.extend({
   paymentOrderStatus: TransactionStatusSchema,
   paymentMethod: z.union([
     z.string().startsWith(`${SWEDBANK_PAY_PAYMENT_METHOD_PREFIX}-`) as ZodType<
-      `${typeof SWEDBANK_PAY_PAYMENT_METHOD_PREFIX}-`,
+      `${typeof SWEDBANK_PAY_PAYMENT_METHOD_PREFIX}-${string}`,
       ZodStringDef
     >,
     z.literal(SWEDBANK_PAY_PAYMENT_METHOD_PREFIX),
