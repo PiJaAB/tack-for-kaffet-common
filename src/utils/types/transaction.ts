@@ -8,4 +8,8 @@ export type TransactionSwedbankPayCC = z.infer<
   typeof TransactionSwedbankPayCCSchema
 >;
 
+export type TransactionSwedbankPaySwish = z.infer<
+  typeof TransactionSwedbankPayCCSchema
+>;
+
 export type Transaction = z.infer<typeof TransactionSchema>;
