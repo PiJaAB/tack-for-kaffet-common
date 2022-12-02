@@ -28,6 +28,7 @@ export const SubscriptionReoccuringTimeSchema = z.enum([
 
 const IProductSchema = z.object({
   type: z.string(),
+  weight: z.number().optional(),
   title: z
     .string({
       required_error: 'Title is required',
