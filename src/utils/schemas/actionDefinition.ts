@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const ActionDefinitionSchema = z.object({
-  access: z.array(z.union([z.literal('admin'), z.literal('user')])),
+  access: z.array(z.enum(['admin', 'user'])),
   actionName: z.string(),
   params: z.any().optional(),
 });

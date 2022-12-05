@@ -23,8 +23,7 @@ const SubscriptionProduct = z.object({
       docRef: z.string(),
       date: z.date(),
     })
-    .optional()
-    .nullable(),
+    .nullish(),
   failedAttempts: z.number(),
   updatedAt: z.date(),
 });

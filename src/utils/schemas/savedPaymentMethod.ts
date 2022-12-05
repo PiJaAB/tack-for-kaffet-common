@@ -10,12 +10,7 @@ const SavedPaymentMethodSchema = z.object({
 export const SavedPaymentMethodSwedbankPayCCSchema =
   SavedPaymentMethodSchema.extend({
     paymentMethod: z.literal(SWEDBANK_PAY_PAYMENT_METHOD.CC),
-    type: z.union([
-      z.literal('payment'),
-      z.literal('recurrence'),
-      z.literal('transactionOnfile'),
-      z.literal('unscheduled'),
-    ]),
+    type: z.enum(['payment', 'recurrence', 'transactionOnfile', 'unscheduled']),
     token: z.string(),
   });
 

@@ -22,7 +22,7 @@ export const SubscriptionReoccuringTimeSchema = z.enum([
   'year',
 ]);
 
-// type: z.union([z.literal('subscription'), z.literal('one-time')]),
+// type: z.enum(['subscription', 'one-time']),
 // subscriptionReoccurring: SubscriptionReoccuringValueSchema,
 // subscriptionTime: SubscriptionReoccuringTimeSchema,
 
@@ -44,27 +44,22 @@ const IProductSchema = z.object({
   imageUrl: z.string().optional(),
   category: z.string().optional(),
 
-  productAllowReviews: z.boolean().nullable(),
-  productReviewNotification: z.boolean().nullable(),
-  productNotificationOnPurchase: z.boolean().nullable(),
-  productNoPushNotifications: z.boolean().nullable(), // boolean | null
+  productAllowReviews: z.boolean().nullish(),
+  productReviewNotification: z.boolean().nullish(),
+  productNotificationOnPurchase: z.boolean().nullish(),
+  productNoPushNotifications: z.boolean().nullish(), // boolean | null
   productCustomerMessage: z.string().nullish(), // string | null | undefined
 
   quantity: z.number().optional(),
 
   specialOffer: z
-    .union([
+    .discriminatedUnion('type', [
       z.object({
         type: z.literal('trial'),
         trialPeriod: z
           .object({
             value: z.number(),
-            unit: z.union([
-              z.literal('day'),
-              z.literal('week'),
-              z.literal('month'),
-              z.literal('year'),
-            ]),
+            unit: z.enum(['day', 'week', 'month', 'year']),
           })
           .nullish(),
       }),
@@ -72,8 +67,7 @@ const IProductSchema = z.object({
         type: z.literal('firstSubscriberDiscount'),
       }),
     ])
-    .nullish()
-    .optional(),
+    .nullish(),
 });
 
 export const BaseSubscriptionSchema = IProductSchema.extend({
@@ -86,7 +80,7 @@ export const BaseGenericProductSchema = IProductSchema.extend({
   type: z.literal('generic'),
 });
 
-export const BaseProductSchema = z.union([
+export const BaseProductSchema = z.discriminatedUnion('type', [
   BaseGenericProductSchema,
   BaseSubscriptionSchema,
 ]);
@@ -103,36 +97,26 @@ const ProductExtension = {
   }, z.date()),
 };
 
-export const ProductSchema = z.union([
-  BaseGenericProductSchema.extend({
-    ...ProductExtension,
-    overrides: BaseGenericProductSchema.partial().optional().nullable(),
-  }),
-  BaseSubscriptionSchema.extend({
-    ...ProductExtension,
-    overrides: BaseSubscriptionSchema.partial().optional().nullable(),
-  }),
+export const ProductSchema = z.discriminatedUnion('type', [
+  BaseGenericProductSchema.extend(ProductExtension),
+  BaseSubscriptionSchema.extend(ProductExtension),
 ]);
 
 const OrderProductExtension = {
   id: z.string(),
+  variant: z.string().nullish(),
   ordinaryPrice: z.number(),
   quantity: z.number().optional(),
 };
 
-export const OrderProductSchema = z.union([
+export const OrderProductSchema = z.discriminatedUnion('type', [
   BaseGenericProductSchema.extend(OrderProductExtension),
   BaseSubscriptionSchema.extend({
     ...OrderProductExtension,
     trialPeriod: z
       .object({
         value: z.number(),
-        unit: z.union([
-          z.literal('day'),
-          z.literal('week'),
-          z.literal('month'),
-          z.literal('year'),
-        ]),
+        unit: z.enum(['day', 'week', 'month', 'year']),
       })
       .nullish(),
   }),
