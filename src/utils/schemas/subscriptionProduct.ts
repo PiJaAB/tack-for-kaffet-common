@@ -9,6 +9,7 @@ export const subscriptionStatuses = [
 ] as const;
 
 const SubscriptionProduct = z.object({
+  variant: z.string().nullish(),
   status: z.enum(subscriptionStatuses),
   continuouslySince: z.date().nullable(),
   createdAt: z.date().optional(),
