@@ -12,10 +12,10 @@ const SubscriptionProduct = z.object({
   variant: z.string().nullish(),
   status: z.enum(subscriptionStatuses),
   continuouslySince: z.date().nullable(),
-  createdAt: z.date().optional(),
-  endDate: z.date().optional(),
-  firstStart: z.date().optional(),
-  trialEndDate: z.date().optional(),
+  createdAt: z.date().nullish(),
+  endDate: z.date().nullish(),
+  firstStart: z.date().nullish(),
+  trialEndDate: z.date().nullish(),
   orderRefs: z.array(z.string()),
   nextRenewalAttempt: z.date().nullable(),
   renewalAttempts: z.number(),
@@ -24,6 +24,14 @@ const SubscriptionProduct = z.object({
       docRef: z.string(),
       date: z.date(),
     })
+    .nullish(),
+  sentEmails: z
+    .array(
+      z.object({
+        date: z.date(),
+        type: z.string(),
+      }),
+    )
     .nullish(),
   failedAttempts: z.number(),
   updatedAt: z.date(),
