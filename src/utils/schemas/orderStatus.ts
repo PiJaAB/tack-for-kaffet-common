@@ -8,6 +8,7 @@ export const orderStatuses = [
   'Paid',
   'Ready',
   'Pending',
+  'Refunded',
 ] as const;
 
 const OrderStatusSchema = z.enum(orderStatuses);
