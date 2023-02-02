@@ -1,0 +1,50 @@
+{
+  "name": "tack-for-kaffet-common",
+  "version": "2.6.0",
+  "private": true,
+  "main": "dist/index.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "rimraf dist && tsc && copyfiles -u 1 \"src/**/*.{d.ts,json}\" dist",
+    "dev:tsc": "tsc --watch",
+    "dev:json": "nodemon -x \"copyfiles -u 1 \\\"src/**/*.{d.ts,json}\\\" dist\"",
+    "dev": "run-p -cs dev:*",
+    "lint": "NODE_ENV=production run-p -cls --aggregate-output lint:*",
+    "lint:eslint-check": "NODE_ENV=production eslint-config-prettier 'src/**/*.js'",
+    "lint:prettier": "NODE_ENV=production prettier -c 'src/**/*.{js,jsx,ts,tsx,json}'",
+    "lint:eslint": "NODE_ENV=production eslint src --report-unused-disable-directives --color",
+    "lint:tsc": "NODE_ENV=production tsc --noEmit --pretty",
+    "deploy": "node scripts/deploy.js"
+  },
+  "nodemonConfig": {
+    "ext": "d.ts,json",
+    "watch": [
+      "src"
+    ]
+  },
+  "peerDependencies": {
+    "zod": "^3.13.4"
+  },
+  "devDependencies": {
+    "@types/child-process-promise": "^2.2.1",
+    "@types/node": "^15.0.1",
+    "@types/react": "^17.0.34",
+    "@types/tough-cookie": "^4.0.0",
+    "@typescript-eslint/eslint-plugin": "5.10.2",
+    "@typescript-eslint/parser": "5.10.2",
+    "copyfiles": "^2.4.1",
+    "eslint": "7.29.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.23.4",
+    "eslint-plugin-prettier": "3.4.0",
+    "execa": "^5.1.1",
+    "nodemon": "^2.0.15",
+    "npm-run-all": "^4.1.5",
+    "prettier": "2.3.2",
+    "react": "^17.0.2",
+    "rimraf": "^3.0.2",
+    "typescript": "4.5.5",
+    "zod": "^3.13.4"
+  }
+}
